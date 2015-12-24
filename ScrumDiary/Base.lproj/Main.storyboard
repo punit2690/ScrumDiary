@@ -42,15 +42,15 @@
             </objects>
             <point key="canvasLocation" x="630" y="-486"/>
         </scene>
-        <!--View Controller-->
+        <!--Calender Day View Controller-->
         <scene sceneID="odZ-mp-HAf">
             <objects>
-                <viewController id="PCt-ET-FwQ" sceneMemberID="viewController">
+                <viewController id="PCt-ET-FwQ" customClass="CalenderDayViewController" customModule="ScrumDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Bar-IR-79X"/>
                         <viewControllerLayoutGuide type="bottom" id="99f-HY-gKO"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CC9-ua-cGE">
+                    <view key="view" contentMode="scaleToFill" id="CC9-ua-cGE" userLabel="nderDayView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0076869623410000002" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -61,10 +61,10 @@
             </objects>
             <point key="canvasLocation" x="1394" y="-486"/>
         </scene>
-        <!--View Controller-->
+        <!--Calender Month View Controller-->
         <scene sceneID="JwG-Ns-85w">
             <objects>
-                <viewController id="1hB-zK-Inu" sceneMemberID="viewController">
+                <viewController id="1hB-zK-Inu" customClass="CalenderMonthViewController" customModule="ScrumDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AY9-5M-08M"/>
                         <viewControllerLayoutGuide type="bottom" id="Xf5-oC-dG4"/>
