@@ -13,11 +13,10 @@ class RecordViewController: UIViewController {
     var selectedDate: NSDate!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var recordTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        
         dateLabel.text = selectedDate.description
     }
 
@@ -26,7 +25,6 @@ class RecordViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -36,5 +34,4 @@ class RecordViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
