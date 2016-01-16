@@ -8,11 +8,12 @@
 
 import UIKit
 
-class CalenderMonthViewController: UIViewController {
+class CalenderMonthViewController: UIViewController, FSCalendarDelegate {
+
+    @IBOutlet weak var fsCalendarView: FSCalendar!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -21,15 +22,12 @@ class CalenderMonthViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
+        self.performSegueWithIdentifier("ShowRecord", sender: self)
     }
-    */
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var recordViewController = segue.destinationViewController as! RecordViewController
+        recordViewController.selectedDate = fsCalendarView.selectedDate
+    }
 }

@@ -8,12 +8,19 @@
 
 import UIKit
 
-class CalenderDayViewController: UIViewController {
-
+class CalenderDayViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    let cellSpacing: CGFloat = 10
+    let collectionViewWidth: CGFloat = 320
+    
+    var cellDataArray = [Int]()
+    @IBOutlet weak var colllectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        let collectionViewFlowLayout = CollectionViewFlowLayout()
+        colllectionView.collectionViewLayout = collectionViewFlowLayout        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +28,29 @@ class CalenderDayViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //MARK: UICollectionViewDataSource
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath)
+        return cell
     }
-    */
-
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        
+        let viewWidth = collectionViewWidth
+        let totalCellWidth: CGFloat = 240 * 5
+        let totalSpacingWidth = cellSpacing * (5-1)
+        
+        let leftInset: CGFloat = (CGFloat)(viewWidth - (totalCellWidth + totalSpacingWidth)) / 2.0
+        let rightInset = leftInset
+        
+        return UIEdgeInsetsMake(0, leftInset, 0, rightInset)
+    }
 }
