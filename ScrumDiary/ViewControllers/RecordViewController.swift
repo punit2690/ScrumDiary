@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
-class RecordViewController: UIViewController {
+class RecordViewController: UIViewController, UITextViewDelegate {
 
     var selectedDate: NSDate!
+    var rightButton: UIBarButtonItem!
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var recordTextView: UITextView!
     
@@ -18,6 +21,7 @@ class RecordViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         dateLabel.text = selectedDate.description
+        self.recordTextView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,13 +29,22 @@ class RecordViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {
+        rightButton = UIBarButtonItem.init(title: "Done", style: UIBarButtonItemStyle.Done, target: recordTextView, action: "resignFirstResponder")
+        self.navigationItem.rightBarButtonItem = rightButton
+        return true
     }
-    */
+    
+    func textViewShouldEndEditing(textView: UITextView) -> Bool {
+        rightButton = nil
+        return true
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        
+    }
 }

@@ -18,6 +18,8 @@
 		1F694FE31C2CB965002A248A /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 1F694FE21C2CB965002A248A /* Podfile */; };
 		1F694FE91C2FA5C2002A248A /* CollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F694FE81C2FA5C2002A248A /* CollectionViewFlowLayout.swift */; };
 		1F6C5C241C4AA37100853231 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C5C231C4AA37100853231 /* RecordViewController.swift */; };
+		1F6C5C271C4ACE1300853231 /* DiaryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C5C251C4ACE1300853231 /* DiaryModel.xcdatamodeld */; };
+		1F6C5C291C4AF27100853231 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C5C281C4AF27100853231 /* Record.swift */; };
 		AA2C2BE179117F1977CCA30C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A66BFA5CE26B3F22AB39BF73 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		1F694FE41C2CEA97002A248A /* ScrumDiary-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScrumDiary-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F694FE81C2FA5C2002A248A /* CollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewFlowLayout.swift; path = Views/CollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		1F6C5C231C4AA37100853231 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordViewController.swift; path = ViewControllers/RecordViewController.swift; sourceTree = "<group>"; };
+		1F6C5C261C4ACE1300853231 /* DiaryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiaryModel.xcdatamodel; sourceTree = "<group>"; };
+		1F6C5C281C4AF27100853231 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Record.swift; path = Model/Record.swift; sourceTree = "<group>"; };
 		A66BFA5CE26B3F22AB39BF73 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BBB8938A767A95066DFA91 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EF0A971D5DF7FC0AAE0A90C5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 		1F694FD71C2CB76C002A248A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1F6C5C281C4AF27100853231 /* Record.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 		1F694FD91C2CB77B002A248A /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				1F6C5C251C4ACE1300853231 /* DiaryModel.xcdatamodeld */,
 				1F694FE41C2CEA97002A248A /* ScrumDiary-Bridging-Header.h */,
 				1F694FA61C2CB3D5002A248A /* AppDelegate.swift */,
 				1F694FAF1C2CB3D5002A248A /* Assets.xcassets */,
@@ -366,7 +372,9 @@
 				1F694FA71C2CB3D5002A248A /* AppDelegate.swift in Sources */,
 				1F6C5C241C4AA37100853231 /* RecordViewController.swift in Sources */,
 				1F694FE91C2FA5C2002A248A /* CollectionViewFlowLayout.swift in Sources */,
+				1F6C5C291C4AF27100853231 /* Record.swift in Sources */,
 				1F694FDF1C2CB897002A248A /* CalenderMonthViewController.swift in Sources */,
+				1F6C5C271C4ACE1300853231 /* DiaryModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +631,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1F6C5C251C4ACE1300853231 /* DiaryModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1F6C5C261C4ACE1300853231 /* DiaryModel.xcdatamodel */,
+			);
+			currentVersion = 1F6C5C261C4ACE1300853231 /* DiaryModel.xcdatamodel */;
+			name = DiaryModel.xcdatamodeld;
+			path = Other/DiaryModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1F694F9B1C2CB3D5002A248A /* Project object */;
 }

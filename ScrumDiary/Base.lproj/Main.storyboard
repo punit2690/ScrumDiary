@@ -179,20 +179,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="InZ-bK-AJ2">
-                                <rect key="frame" x="20" y="150" width="560" height="450"/>
+                                <rect key="frame" x="20" y="150" width="560" height="401"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="InZ-bK-AJ2" firstAttribute="top" secondItem="B9Q-Ql-gND" secondAttribute="bottom" constant="25" id="631-4T-hET"/>
                             <constraint firstItem="InZ-bK-AJ2" firstAttribute="leading" secondItem="p5n-qJ-emT" secondAttribute="leading" constant="20" id="BEF-Ky-9Ns"/>
                             <constraint firstAttribute="trailing" secondItem="InZ-bK-AJ2" secondAttribute="trailing" constant="20" id="GQw-7O-Kuw"/>
                             <constraint firstItem="B9Q-Ql-gND" firstAttribute="centerX" secondItem="p5n-qJ-emT" secondAttribute="centerX" id="Tul-CO-hSJ"/>
-                            <constraint firstAttribute="bottom" secondItem="InZ-bK-AJ2" secondAttribute="bottom" id="imK-U2-IMf"/>
+                            <constraint firstItem="92Q-g1-H4m" firstAttribute="top" secondItem="InZ-bK-AJ2" secondAttribute="bottom" id="gEl-RX-2Qh"/>
                             <constraint firstItem="B9Q-Ql-gND" firstAttribute="top" secondItem="WKV-6l-oLg" secondAttribute="bottom" constant="40" id="kHq-6o-Ztn"/>
                         </constraints>
                     </view>
