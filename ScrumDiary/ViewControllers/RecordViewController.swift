@@ -41,7 +41,30 @@ class RecordViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidEndEditing(textView: UITextView) {
+        let appDelegate =
+        UIApplication.sharedApplication().delegate as! AppDelegate
         
+        let managedContext = appDelegate.managedObjectContext
+        
+        //2
+        let entity =  NSEntityDescription.entityForName("Record",
+            inManagedObjectContext:managedContext)
+        
+        let record = NSManagedObject(entity: entity!,
+            insertIntoManagedObjectContext: managedContext)
+        
+        //3
+        record.setValue(textView.text, forKey: "note")
+        record.setValue(selectedDate, forKey: "date")
+        
+        //4
+        do {
+            try managedContext.save()
+            //5
+//            record.append(person)
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        }
     }
     
     func textViewDidChange(textView: UITextView) {

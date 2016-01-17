@@ -20,22 +20,34 @@ class CalenderMonthViewController: UIViewController, FSCalendarDelegate {
     }
 
     override func viewWillAppear(animated: Bool) {
-        //1
-        let appDelegate =
-        UIApplication.sharedApplication().delegate as! AppDelegate
         
-        let managedContext = appDelegate.managedObjectContext
-        
-        //2
-        let fetchRequest = NSFetchRequest(entityName: "Record")
-        
-        //3
-        do {
-            let results =
-            try managedContext.executeFetchRequest(fetchRequest)
-            records = results as! [NSManagedObject]
-        } catch let error as NSError {
-            print("Could not fetch \(error), \(error.userInfo)")
+        //TODO: Find and fix optional checks if any
+        dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { [weak self] in
+            //1
+            let appDelegate =
+            UIApplication.sharedApplication().delegate as! AppDelegate
+            
+            let managedContext = appDelegate.managedObjectContext
+            
+            //2
+            let fetchRequest = NSFetchRequest(entityName: "Record")
+            
+            //3
+            do {
+                let results =
+                try managedContext.executeFetchRequest(fetchRequest)
+                self?.records = results as! [NSManagedObject]
+                
+                for record in (self?.records)! {
+                    let date: NSDate = record.valueForKey("date") as! NSDate
+                    
+                    dispatch_async(dispatch_get_main_queue(), { [weak self] in
+                        self?.fsCalendarView.selectDate(date)
+                    })
+                }
+            } catch let error as NSError {
+                print("Could not fetch \(error), \(error.userInfo)")
+            }
         }
     }
     override func didReceiveMemoryWarning() {
