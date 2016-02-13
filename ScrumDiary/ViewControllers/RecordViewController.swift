@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import CoreData
 
 class RecordViewController: UIViewController, UITextViewDelegate {
 
-    var selectedDate: NSDate!
+    var selectedRecord: Record!
     var rightButton: UIBarButtonItem!
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -20,8 +19,10 @@ class RecordViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        dateLabel.text = selectedDate.description
+        dateLabel.text = selectedRecord.date.description
+        recordTextView.text = selectedRecord.note
         self.recordTextView.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,33 +42,10 @@ class RecordViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidEndEditing(textView: UITextView) {
-        let appDelegate =
-        UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
-        
-        //2
-        let entity =  NSEntityDescription.entityForName("Record",
-            inManagedObjectContext:managedContext)
-        
-        let record = NSManagedObject(entity: entity!,
-            insertIntoManagedObjectContext: managedContext)
-        
-        //3
-        record.setValue(textView.text, forKey: "note")
-        record.setValue(selectedDate, forKey: "date")
-        
-        //4
-        do {
-            try managedContext.save()
-            //5
-//            record.append(person)
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
-        }
+        selectedRecord.save()
     }
     
     func textViewDidChange(textView: UITextView) {
-        
+        selectedRecord.note = textView.text
     }
 }
