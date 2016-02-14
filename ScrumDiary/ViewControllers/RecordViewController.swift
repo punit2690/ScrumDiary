@@ -33,7 +33,7 @@ class RecordViewController: UIViewController, UITextViewDelegate {
     override func viewWillDisappear(animated: Bool) {
         if selectedRecord.note == nil {
             CoreDataManager.defaultManager.managedObjectContext.deleteObject(selectedRecord)
-            CoreDataManager.defaultManager.saveContext()
+//            CoreDataManager.defaultManager.saveContext()
         }
         super.viewWillDisappear(animated)
     }
@@ -50,7 +50,7 @@ class RecordViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidEndEditing(textView: UITextView) {
-        CoreDataManager.defaultManager.saveContext()
+//        CoreDataManager.defaultManager.saveContext()
     }
     
     func textViewDidChange(textView: UITextView) {
