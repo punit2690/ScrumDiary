@@ -2,46 +2,29 @@
 //  Record.swift
 //  ScrumDiary
 //
-//  Created by Kulkarni, Punit on 1/16/16.
+//  Created by Kulkarni, Punit on 2/14/16.
 //  Copyright © 2016 Kulkarni, Punit. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import CoreData
 
-class Record: NSObject {
+@objc(Record)
+class Record: NSManagedObject {
+
+// Insert code here to add functionality to your managed object subclass
     
-    var date: NSDate!
-    var note: String!
-    
-    func save() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    class func initNewRecord() -> Record {
         
-        let managedContext = appDelegate.managedObjectContext
-        
+        let managedContext = CoreDataManager.defaultManager.managedObjectContext
         let entity =  NSEntityDescription.entityForName("Record",
             inManagedObjectContext:managedContext)
-        
-        let record = NSManagedObject(entity: entity!,
-            insertIntoManagedObjectContext: managedContext)
-        
-        record.setValue(note, forKey: "note")
-        record.setValue(date, forKey: "date")
-        
-        do {
-            try managedContext.save()
-
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
-        }
+        return Record.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
     }
-    
+
     class func getRecordForDate(date: NSDate!) -> Record! {
         
-        let appDelegate =
-        UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let managedContext = appDelegate.managedObjectContext
+        let managedContext = CoreDataManager.defaultManager.managedObjectContext
         let entity =  NSEntityDescription.entityForName("Record",
             inManagedObjectContext:managedContext)
         let predicate = NSPredicate(format:"%@ = date", date)
@@ -58,7 +41,7 @@ class Record: NSObject {
                 let dictionary = obj.dictionaryWithValuesForKeys(keys as! [String])
                 print(dictionary.description)
                 
-                let record = Record()
+                let record = Record.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
                 
                 if let note = dictionary["note"] as? String {
                     record.note = note
@@ -66,6 +49,7 @@ class Record: NSObject {
                 if let date = dictionary["date"] as? NSDate {
                     record.date = date
                 }
+                
                 return record
             }
             else {

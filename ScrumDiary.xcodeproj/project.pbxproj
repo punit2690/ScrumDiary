@@ -19,7 +19,13 @@
 		1F694FE91C2FA5C2002A248A /* CollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F694FE81C2FA5C2002A248A /* CollectionViewFlowLayout.swift */; };
 		1F6C5C241C4AA37100853231 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C5C231C4AA37100853231 /* RecordViewController.swift */; };
 		1F6C5C271C4ACE1300853231 /* DiaryModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C5C251C4ACE1300853231 /* DiaryModel.xcdatamodeld */; };
-		1F6C5C291C4AF27100853231 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C5C281C4AF27100853231 /* Record.swift */; };
+		1F6C5C291C4AF27100853231 /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C5C281C4AF27100853231 /* RecordModel.swift */; };
+		1FDF69041C70ED5700138F90 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDF69031C70ED5700138F90 /* CoreDataManager.swift */; };
+		1FDF69051C70ED5700138F90 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDF69031C70ED5700138F90 /* CoreDataManager.swift */; };
+		1FDF690A1C711C2300138F90 /* Record+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDF69081C711C2300138F90 /* Record+CoreDataProperties.swift */; };
+		1FDF690B1C711C2300138F90 /* Record+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDF69081C711C2300138F90 /* Record+CoreDataProperties.swift */; };
+		1FDF690C1C711C2300138F90 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDF69091C711C2300138F90 /* Record.swift */; };
+		1FDF690D1C711C2300138F90 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDF69091C711C2300138F90 /* Record.swift */; };
 		AA2C2BE179117F1977CCA30C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A66BFA5CE26B3F22AB39BF73 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +66,10 @@
 		1F694FE81C2FA5C2002A248A /* CollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewFlowLayout.swift; path = Views/CollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		1F6C5C231C4AA37100853231 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordViewController.swift; path = ViewControllers/RecordViewController.swift; sourceTree = "<group>"; };
 		1F6C5C261C4ACE1300853231 /* DiaryModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiaryModel.xcdatamodel; sourceTree = "<group>"; };
-		1F6C5C281C4AF27100853231 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Record.swift; path = Model/Record.swift; sourceTree = "<group>"; };
+		1F6C5C281C4AF27100853231 /* RecordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordModel.swift; path = Model/RecordModel.swift; sourceTree = "<group>"; };
+		1FDF69031C70ED5700138F90 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = Model/CoreDataManager.swift; sourceTree = "<group>"; };
+		1FDF69081C711C2300138F90 /* Record+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Record+CoreDataProperties.swift"; path = "Model/Record+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1FDF69091C711C2300138F90 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Record.swift; path = Model/Record.swift; sourceTree = "<group>"; };
 		A66BFA5CE26B3F22AB39BF73 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BBB8938A767A95066DFA91 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EF0A971D5DF7FC0AAE0A90C5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,7 +165,10 @@
 		1F694FD71C2CB76C002A248A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1F6C5C281C4AF27100853231 /* Record.swift */,
+				1FDF69081C711C2300138F90 /* Record+CoreDataProperties.swift */,
+				1FDF69091C711C2300138F90 /* Record.swift */,
+				1F6C5C281C4AF27100853231 /* RecordModel.swift */,
+				1FDF69031C70ED5700138F90 /* CoreDataManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -369,11 +381,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F694FE11C2CB8AF002A248A /* CalenderDayViewController.swift in Sources */,
+				1FDF690A1C711C2300138F90 /* Record+CoreDataProperties.swift in Sources */,
+				1FDF690C1C711C2300138F90 /* Record.swift in Sources */,
 				1F694FA71C2CB3D5002A248A /* AppDelegate.swift in Sources */,
 				1F6C5C241C4AA37100853231 /* RecordViewController.swift in Sources */,
 				1F694FE91C2FA5C2002A248A /* CollectionViewFlowLayout.swift in Sources */,
-				1F6C5C291C4AF27100853231 /* Record.swift in Sources */,
+				1F6C5C291C4AF27100853231 /* RecordModel.swift in Sources */,
 				1F694FDF1C2CB897002A248A /* CalenderMonthViewController.swift in Sources */,
+				1FDF69041C70ED5700138F90 /* CoreDataManager.swift in Sources */,
 				1F6C5C271C4ACE1300853231 /* DiaryModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +398,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F694FBE1C2CB3D5002A248A /* ScrumDiaryTests.swift in Sources */,
+				1FDF690B1C711C2300138F90 /* Record+CoreDataProperties.swift in Sources */,
+				1FDF690D1C711C2300138F90 /* Record.swift in Sources */,
+				1FDF69051C70ED5700138F90 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

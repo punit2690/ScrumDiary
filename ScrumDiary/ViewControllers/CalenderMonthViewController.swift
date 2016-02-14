@@ -24,13 +24,11 @@ class CalenderMonthViewController: UIViewController, FSCalendarDelegate {
         //TODO: Find and fix optional checks if any
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { [weak self] in
 
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            let managedContext = appDelegate.managedObjectContext
             let fetchRequest = NSFetchRequest(entityName: "Record")
             
             do {
                 let results =
-                try managedContext.executeFetchRequest(fetchRequest)
+                try CoreDataManager.defaultManager.managedObjectContext.executeFetchRequest(fetchRequest)
                 self?.records = results as! [NSManagedObject]
                 
                 for record in (self?.records)! {
@@ -45,6 +43,7 @@ class CalenderMonthViewController: UIViewController, FSCalendarDelegate {
             }
         }
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -57,10 +56,9 @@ class CalenderMonthViewController: UIViewController, FSCalendarDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let recordViewController = segue.destinationViewController as! RecordViewController
         
-        
         var record = Record.getRecordForDate(fsCalendarView.selectedDate)
         if (record == nil) {
-            record = Record()
+            record = Record.initNewRecord()
             record.date = fsCalendarView.selectedDate
         }
         recordViewController.selectedRecord = record

@@ -19,7 +19,7 @@ class RecordViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        dateLabel.text = selectedRecord.date.description
+        dateLabel.text = selectedRecord.date!.description
         recordTextView.text = selectedRecord.note
         self.recordTextView.delegate = self
         
@@ -28,6 +28,14 @@ class RecordViewController: UIViewController, UITextViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        if selectedRecord.note == nil {
+            CoreDataManager.defaultManager.managedObjectContext.deleteObject(selectedRecord)
+            CoreDataManager.defaultManager.saveContext()
+        }
+        super.viewWillDisappear(animated)
     }
     
     func textViewShouldBeginEditing(textView: UITextView) -> Bool {
@@ -42,7 +50,7 @@ class RecordViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidEndEditing(textView: UITextView) {
-        selectedRecord.save()
+        CoreDataManager.defaultManager.saveContext()
     }
     
     func textViewDidChange(textView: UITextView) {
