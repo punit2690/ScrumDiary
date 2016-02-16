@@ -20,7 +20,7 @@ class CalenderMonthViewController: UIViewController, FSCalendarDelegate {
     }
 
     override func viewWillAppear(animated: Bool) {
-        
+        super.viewWillAppear(animated)
         //TODO: Find and fix optional checks if any
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { [weak self] in
 

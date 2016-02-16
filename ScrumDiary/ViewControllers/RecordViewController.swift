@@ -22,7 +22,6 @@ class RecordViewController: UIViewController, UITextViewDelegate {
         dateLabel.text = selectedRecord.date!.description
         recordTextView.text = selectedRecord.note
         self.recordTextView.delegate = self
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,7 +32,6 @@ class RecordViewController: UIViewController, UITextViewDelegate {
     override func viewWillDisappear(animated: Bool) {
         if selectedRecord.note == nil {
             CoreDataManager.defaultManager.managedObjectContext.deleteObject(selectedRecord)
-//            CoreDataManager.defaultManager.saveContext()
         }
         super.viewWillDisappear(animated)
     }
@@ -50,7 +48,6 @@ class RecordViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidEndEditing(textView: UITextView) {
-//        CoreDataManager.defaultManager.saveContext()
     }
     
     func textViewDidChange(textView: UITextView) {
