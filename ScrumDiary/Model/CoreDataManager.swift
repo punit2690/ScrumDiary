@@ -73,4 +73,20 @@ class CoreDataManager {
             }
         }
     }
+    
+    func getSelectedDates() -> [NSManagedObject] {
+        let fetchRequest = NSFetchRequest(entityName: "Record")
+        
+        do {
+            let results =
+            try CoreDataManager.defaultManager.managedObjectContext.executeFetchRequest(fetchRequest)
+            if let records = results as? [NSManagedObject] {
+                return records
+            }
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        return []
+    }
 }

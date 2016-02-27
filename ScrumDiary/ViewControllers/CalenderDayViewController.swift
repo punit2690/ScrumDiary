@@ -23,6 +23,17 @@ class CalenderDayViewController: UIViewController, UICollectionViewDataSource, U
         colllectionView.collectionViewLayout = collectionViewFlowLayout        
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        let viewWidth = collectionViewWidth
+        let totalCellWidth: CGFloat = 240 * 5
+        let totalSpacingWidth = cellSpacing * (5-1)
+        
+        let leftInset: CGFloat = (CGFloat)(viewWidth - (totalCellWidth + totalSpacingWidth)) / 2.0
+        let rightInset = leftInset
+        colllectionView.contentOffset.x = -rightInset
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,17 +51,5 @@ class CalenderDayViewController: UIViewController, UICollectionViewDataSource, U
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        
-        let viewWidth = collectionViewWidth
-        let totalCellWidth: CGFloat = 240 * 5
-        let totalSpacingWidth = cellSpacing * (5-1)
-        
-        let leftInset: CGFloat = (CGFloat)(viewWidth - (totalCellWidth + totalSpacingWidth)) / 2.0
-        let rightInset = leftInset
-        
-        return UIEdgeInsetsMake(0, leftInset, 0, rightInset)
     }
 }

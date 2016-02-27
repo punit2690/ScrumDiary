@@ -9,37 +9,30 @@
 import UIKit
 import CoreData
 
-class CalenderMonthViewController: UIViewController, FSCalendarDelegate {
+class CalenderMonthViewController: UIViewController, FSCalendarDelegate, RecordViewControllerDelegate {
 
     var records = [NSManagedObject]()
+    var selectedDate :NSDate?
+    
     @IBOutlet weak var fsCalendarView: FSCalendar!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        fsCalendarView.allowsMultipleSelection = true
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //TODO: Find and fix optional checks if any
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { [weak self] in
-
-            let fetchRequest = NSFetchRequest(entityName: "Record")
-            
-            do {
-                let results =
-                try CoreDataManager.defaultManager.managedObjectContext.executeFetchRequest(fetchRequest)
-                self?.records = results as! [NSManagedObject]
+            self?.records = CoreDataManager.defaultManager.getSelectedDates()
+            for record in (self?.records)! {
+                let date: NSDate = record.valueForKey("date") as! NSDate
                 
-                for record in (self?.records)! {
-                    let date: NSDate = record.valueForKey("date") as! NSDate
-                    
-                    dispatch_async(dispatch_get_main_queue(), { [weak self] in
-                        self?.fsCalendarView.selectDate(date)
+                dispatch_async(dispatch_get_main_queue(), { [weak self] in
+                    self?.fsCalendarView.selectDate(date)
                     })
-                }
-            } catch let error as NSError {
-                print("Could not fetch \(error), \(error.userInfo)")
             }
         }
     }
@@ -49,18 +42,31 @@ class CalenderMonthViewController: UIViewController, FSCalendarDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
-        self.performSegueWithIdentifier("ShowRecord", sender: self)
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let recordViewController = segue.destinationViewController as! RecordViewController
         
-        var record = Record.getRecordForDate(fsCalendarView.selectedDate)
+        var record = Record.getRecordForDate(self.selectedDate)
         if (record == nil) {
             record = Record.initNewRecord()
-            record.date = fsCalendarView.selectedDate
+            record.date = self.selectedDate
         }
         recordViewController.selectedRecord = record
+        recordViewController.delegate = self
+    }
+    
+    func calendar(calendar: FSCalendar!, shouldSelectDate date: NSDate!) -> Bool {
+        self.selectedDate = date
+        self.performSegueWithIdentifier("ShowRecord", sender: self)
+        return false
+    }
+    
+    func calendar(calendar: FSCalendar!, shouldDeselectDate date: NSDate!) -> Bool {
+        self.selectedDate = date
+        self.performSegueWithIdentifier("ShowRecord", sender: self)
+        return false
+    }
+    
+    func deselectDate(date: NSDate) {
+        self.fsCalendarView.deselectDate(date)
     }
 }

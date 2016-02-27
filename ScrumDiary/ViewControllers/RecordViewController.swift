@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol RecordViewControllerDelegate {
+    
+    func deselectDate(date:NSDate)
+}
+
 class RecordViewController: UIViewController, UITextViewDelegate {
 
     var selectedRecord: Record!
+    var delegate: RecordViewControllerDelegate!
     var rightButton: UIBarButtonItem!
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -30,9 +36,11 @@ class RecordViewController: UIViewController, UITextViewDelegate {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        if selectedRecord.note == nil {
+        if selectedRecord.note?.characters.count == 0 || selectedRecord.note == nil {
+            self.delegate.deselectDate(selectedRecord.date!)
             CoreDataManager.defaultManager.managedObjectContext.deleteObject(selectedRecord)
         }
+        CoreDataManager.defaultManager.saveContext()
         super.viewWillDisappear(animated)
     }
     

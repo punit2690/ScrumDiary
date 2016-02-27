@@ -36,20 +36,6 @@ class Record: NSManagedObject {
             let fetchedObjects = try managedContext.executeFetchRequest(fetch)
             if fetchedObjects.count > 0 {
                 let obj = fetchedObjects[0] as! Record
-//                let dict = obj.entity.attributesByName as NSDictionary
-//                let keys: NSArray = dict.allKeys
-//                let dictionary = obj.dictionaryWithValuesForKeys(keys as! [String])
-//                print(dictionary.description)
-//                
-//                let record = Record.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-//                
-//                if let note = dictionary["note"] as? String {
-//                    record.note = note
-//                }
-//                if let date = dictionary["date"] as? NSDate {
-//                    record.date = date
-//                }
-                
                 return obj
             }
             else {
@@ -59,7 +45,6 @@ class Record: NSManagedObject {
         catch {
             
         }
-        
         return nil
     }
 }
