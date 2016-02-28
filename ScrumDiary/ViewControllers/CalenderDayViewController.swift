@@ -8,19 +8,22 @@
 
 import UIKit
 
-class CalenderDayViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class CalenderDayViewController: UIViewController, ASCollectionDelegate, ASCollectionDataSource {
     
     let cellSpacing: CGFloat = 10
     let collectionViewWidth: CGFloat = 320
     
     var cellDataArray = [Int]()
-    @IBOutlet weak var colllectionView: UICollectionView!
+    @IBOutlet weak var colllectionView: ASCollectionNode!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.colllectionView.view.asyncDataSource = self
+        self.colllectionView.view.asyncDelegate = self
+
         let collectionViewFlowLayout = CollectionViewFlowLayout()
-        colllectionView.collectionViewLayout = collectionViewFlowLayout        
+        colllectionView.view.collectionViewLayout = collectionViewFlowLayout
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -31,7 +34,7 @@ class CalenderDayViewController: UIViewController, UICollectionViewDataSource, U
         
         let leftInset: CGFloat = (CGFloat)(viewWidth - (totalCellWidth + totalSpacingWidth)) / 2.0
         let rightInset = leftInset
-        colllectionView.contentOffset.x = -rightInset
+        colllectionView.view.contentOffset.x = -rightInset
     }
     
     override func didReceiveMemoryWarning() {
@@ -39,8 +42,9 @@ class CalenderDayViewController: UIViewController, UICollectionViewDataSource, U
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: UICollectionViewDataSource
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    //MARK: UICollectionViewDataSourc
+    
+    func collectionView(collectionView: ASCollectionView, nodeForItemAtIndexPath indexPath: NSIndexPath) -> ASCellNode {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath)
         return cell
     }
